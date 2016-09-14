@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section scripts{
+    <style>
+        hr {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            margin-left: auto;
+            margin-right: auto;
+            border-style: inset;
+            border-width: 1px;
+        }
+
+        #border1{
+    float: left;
+    width: 320px;
+    height: 500px;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid black;
+    outline-style:double;
+}
+    /* unvisited link */
+    a:link {
+    color: blue;
+}
+     /* visited link */
+    a:visited {
+    color: red;
+}
+     /* mouse over link */
+    a:hover {
+    color: hotpink;
+}
+    /* selected link */
+    a:active {
+    color: blue;
+}
+   
+    </style>
+
+
+}
+
+
+<div class="jumbotron">
+</div>
+
+
+
+
+<div id="border1">
+     <h1 style="text-align:center;">ÄLYTALO</h1>
+
+   <p>Talon sijainti:</p>
+
+    <div id="googleMap" style="width:300px;height:100px;">
+    </div><script src="http://maps.googleapis.com/maps/api/js"></script>
+
+<div class="col-md-offset-0 col-md-12">
+    <div class="form-actions no-color">
+        <div class="btn-group btn-group-vertical btn-lg">
+            <hr>
+            <a href="/TaloSaunat" class="btn btn-default" style="width:250px;">SAUNA&raquo;</a><hr>
+            <a href="/TaloLammot" class="btn btn-default"style="width:250px;">LÄMMITYS&raquo;</a><hr>
+            <a href="/TaloValot" class="btn btn-default" style="width:250px;">VALAISTUS&raquo;</a><hr>
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<script>
+        var myCenter = new google.maps.LatLng(60.457990699999996, 26.253110099999997);
+
+        function initialize() {
+            var mapProp = {
+                center: myCenter,
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.SATELLITE
+            };
+
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+            var marker = new google.maps.Marker({
+                position: myCenter,
+            });
+
+            marker.setMap(map);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+    
+    <div class="row">
+                <div class="col-md-4">
+                    <h2>Getting started</h2>
+                    <p>
+                        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                        enables a clean separation of concerns and gives you full control over markup
+                        for enjoyable, agile development.
+                    </p>
+                    <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Get more libraries</h2>
+                    <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+                    <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Web Hosting</h2>
+                    <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+                    <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+                </div>
+            </div>

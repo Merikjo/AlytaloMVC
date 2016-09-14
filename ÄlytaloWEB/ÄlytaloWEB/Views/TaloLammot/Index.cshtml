@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ÄlytaloWEB.Models.TaloLampo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts{
+    <style>
+        table,th,td {
+        border: 1px solid black;
+    }
+        </style>
+
+}
+
+<h2>TalonLämpöTila</h2>
+
+
+
+<p>
+    @Html.ActionLink("Tallenna huoneen lämpötila", "Create")
+</p>
+<div style="overflow-x:auto;">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Huone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HuoneTavoiteLampo) &deg;C
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HuoneNykyLampo) &deg;C
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LampoKirjattu)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Huone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HuoneTavoiteLampo) &deg;C
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HuoneNykyLampo) &deg;C
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LampoKirjattu)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Huone_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Huone_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Huone_ID })
+                </td>
+            </tr>
+        }
+
+
+    </table>
+</div>
