@@ -1,91 +1,260 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@section scripts{
-    <style>
-        hr {
-            margin-top: 0.5em;
-            margin-bottom: 0.5em;
-            margin-left: auto;
-            margin-right: auto;
-            border-style: inset;
-            border-width: 1px;
-        }
 
-        #border1{
-    float: left;
-    width: 320px;
-    height: 500px;
-    margin: 10px;
-    padding: 10px;
-    border: 2px solid black;
-    outline-style:double;
-}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+
+<script src="~/Scripts/modernizr-2.8.3.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="/Scripts/bootstrap.js"></script>
+<script src="/Scripts/respond.js"></script>
+<script src="~/Scripts/jquery-2.2.4.js"></script>
+@*<script src="~/Scripts/jquery-3.2.1.min.js"></script>*@
+
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+
+
+<style>
+    hr {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        margin-left: auto;
+        margin-right: auto;
+        border-style: inset;
+        border-width: 1px;
+    }
+
+    #border1 {
+        float: left;
+        width: 320px;
+        height: 500px;
+        margin: 10px;
+        padding: 10px;
+        border: 2px solid black;
+        outline-style: double;
+    }
     /* unvisited link */
     a:link {
-    color: blue;
-}
-     /* visited link */
+        color: blue;
+    }
+    /* visited link */
     a:visited {
-    color: red;
-}
-     /* mouse over link */
+        color: red;
+    }
+    /* mouse over link */
     a:hover {
-    color: hotpink;
-}
+        color: hotpink;
+    }
     /* selected link */
     a:active {
-    color: blue;
-}
-   
-    </style>
-}
+        color: blue;
+    }
+</style>
 
-<div class="jumbotron">
-</div>
+<script>
+            var dt = '@ViewBag.EndDate';
+            var dateAr = dt.split('-');
+            var newDate = dateAr[1] + '/' + dateAr[0] + '/' + dateAr[2];
 
-<div id="border1">
-     <h1 style="text-align:center;">ÄLYTALO</h1>
+            var end = new Date(dateAr[1] + '/' + dateAr[0] + '/' + dateAr[2]);
 
-   <p>Talon sijainti:</p>
+            var _second = 1000;
+            var _minute = _second * 60;
+            var _hour = _minute * 60;
+            var _day = _hour * 24;
+            var timer;
 
-    <div id="googleMap" style="width:300px;height:100px;">
-    </div><script src="http://maps.googleapis.com/maps/api/js"></script>
+            function showRemaining()
+            {
+            var now = new Date();
+            var distance = end - now;
+            if (distance & lt; 0) {
+            clearInterval(timer);
+            document.getElementById('countdown').innerHTML = 'EXPIRED!';
+            window.location.href = '/Home/Index';
 
-<div class="col-md-offset-0 col-md-12">
-    <div class="form-actions no-color">
-        <div class="btn-group btn-group-vertical btn-lg">
-            <hr>
-            <a href="/TaloSaunat" class="btn btn-default" style="width:250px;">SAUNA&raquo;</a><hr>
-            <a href="/TaloLammot" class="btn btn-default"style="width:250px;">LÄMMITYS&raquo;</a><hr>
-            <a href="/TaloValot" class="btn btn-default" style="width:250px;">VALAISTUS&raquo;</a><hr>
+            return;
+            }
+            var days = Math.floor(distance / _day);
+            var hours = Math.floor((distance % _day) / _hour);
+            var minutes = Math.floor((distance % _hour) / _minute);
+            var seconds = Math.floor((distance % _minute) / _second);
 
 
+            document.getElementById('countdown').innerHTML = hours + 'hrs ';
+            document.getElementById('countdown').innerHTML += minutes + 'mins ';
+            document.getElementById('countdown').innerHTML += seconds + 'secs';
+            }
+
+            timer = setInterval(showRemaining, 1000);
+
+</script>
+
+<script>
+
+      $(document).ready(function () {
+          $("#countdown").countdown({
+              date: "2010-01-01T00:00:00",
+              format: "on"
+          },
+
+              function () {
+              });
+
+          $("#b").click(function () {
+
+          });
+      });
+</script>
+
+
+
+<!--BACKGROUND-->
+<div class="w3-container">
+    <div class="background">
+        <div class="jumbotron">
+
+            @*<div id="border1">*@
+            <h2 style="text-align:center;">ÄLYTALO</h2>
+
+            @*<p>Talon sijainti:</p>*@
+
+            @*<p id="countdown"></p>*@
+
+       
+            <div id="googleMap" style="width:100%;height:200px;"></div>
+
+            <script src="http://maps.googleapis.com/maps/api/js"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTiMTzgFGphHJTGCc1p4D9UTipHyDg5MU&callback=myMap"></script>
+            @*</div>*@
+
+            <p id="demo"></p>
+
+            <script>
+                var myVar = setInterval(myTimer, 1000);
+
+                function myTimer() {
+                    var d = new Date();
+                    document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+                }
+            </script>
+
+            <script src="~/Scripts/countdown.js"></script>
+            <div class="timer-area">
+
+                <ul id="countdown">
+                    <li>
+                        <span class="days">00</span>
+                        <p class="timeRefDays">days</p>
+                    </li>
+                    <li>
+                        <span class="hours">00</span>
+                        <p class="timeRefHours">hours</p>
+                    </li>
+                    <li>
+                        <span class="minutes">00</span>
+                        <p class="timeRefMinutes">minutes</p>
+                    </li>
+                    <li>
+                        <span class="seconds">00</span>
+                        <p class="timeRefSeconds">seconds</p>
+                    </li>
+                </ul>
+            </div>
+
+
+
+            <div class="col-md-12">
+                <div class="form-actions no-color">
+                    <div class="btn-group btn-group-vertical btn-lg">
+                        <hr>
+                        @*<a href="~/TaloSauna/SaunaOn" class="btn btn-default" style="width:250px;">SAUNA ON&raquo;</a><hr>*@
+                        <p><a href="~/TaloSauna/Edit" class="w3-btn w3-large">SAUNA ON</a></p>
+                      
+                        <a href="~/TaloSauna" class="btn btn-default" style="width:250px;">TALOSAUNA&raquo;</a><hr>
+                        <a href="~/TaloLammot" class="btn btn-default" style="width:250px;">LÄMMITYS&raquo;</a><hr>
+                        <a href="~/TaloValo" class="btn btn-default" style="width:250px;">VALAISTUS&raquo;</a><hr>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <!--CLOCK OPTIONS-->
+            <script src="~/Scripts/clock.js"></script>
+            <div class="sidebarClock">
+                <canvas id="canvas" width="300" height="300" style="background-color:#333"></canvas>
+
+                <script>
+                    var canvas = document.getElementById("canvas");
+                    var ctx = canvas.getContext("2d");
+                    var radius = canvas.height / 2;
+                    ctx.translate(radius, radius);
+                    radius = radius * 0.90
+                    //drawClock();
+                    setInterval(drawClock, 1000);
+
+                    function drawClock() {
+                        drawFace(ctx, radius);
+                        drawNumbers(ctx, radius);
+                        drawTime(ctx, radius);
+                    }
+          
+                </script>
+            </div><!--clock options end-->
+
+    
         </div>
     </div>
 </div>
-</div>
 
-<script>
-        var myCenter = new google.maps.LatLng(60.457990699999996, 26.253110099999997);
+        <script>
+            var myCenter = new google.maps.LatLng(60.457990699999996, 26.253110099999997);
 
-        function initialize() {
-            var mapProp = {
-                center: myCenter,
-                zoom: 15,
-                mapTypeId: google.maps.MapTypeId.SATELLITE
-            };
+            function initialize() {
+                var mapProp = {
+                    center: myCenter,
+                    zoom: 15,
+                    mapTypeId: google.maps.MapTypeId.SATELLITE
+                };
 
-            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-            var marker = new google.maps.Marker({
-                position: myCenter,
-            });
+                var marker = new google.maps.Marker({
+                    position: myCenter,
+                });
 
-            marker.setMap(map);
-        }
+                marker.setMap(map);
+            }
 
-        google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
 
-    
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+

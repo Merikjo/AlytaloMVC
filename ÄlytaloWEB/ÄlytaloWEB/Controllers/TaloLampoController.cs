@@ -10,107 +10,107 @@ using ÄlytaloWEB.Models;
 
 namespace ÄlytaloWEB.Controllers
 {
-    public class TaloValotController : Controller
+    public class TaloLampoController : Controller
     {
         private JohaMeriSQL1Entities db = new JohaMeriSQL1Entities();
 
-        // GET: TaloValot
+        // GET: TaloLampo
         public ActionResult Index()
         {
-            return View(db.TaloValo.ToList());
+            return View(db.TaloLampo.ToList());
         }
 
-        // GET: TaloValot/Details/5
+        // GET: TaloLampo/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaloValo taloValo = db.TaloValo.Find(id);
-            if (taloValo == null)
+            TaloLampo taloLampo = db.TaloLampo.Find(id);
+            if (taloLampo == null)
             {
                 return HttpNotFound();
             }
-            return View(taloValo);
+            return View(taloLampo);
         }
 
-        // GET: TaloValot/Create
+        // GET: TaloLampo/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TaloValot/Create
+        // POST: TaloLampo/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Valo_ID,Huone,ValaisinType,Lamppu_ID,ValoTila_ID,ValonMaara,ValoTilaKirjattu")] TaloValo taloValo)
+        public ActionResult Create([Bind(Include = "Huone_ID,Huone,HuoneTavoiteLampo,HuoneNykyLampo,LampoKirjattu")] TaloLampo taloLampo)
         {
             if (ModelState.IsValid)
             {
-                db.TaloValo.Add(taloValo);
+                db.TaloLampo.Add(taloLampo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(taloValo);
+            return View(taloLampo);
         }
 
-        // GET: TaloValot/Edit/5
+        // GET: TaloLampo/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaloValo taloValo = db.TaloValo.Find(id);
-            if (taloValo == null)
+            TaloLampo taloLampo = db.TaloLampo.Find(id);
+            if (taloLampo == null)
             {
                 return HttpNotFound();
             }
-            return View(taloValo);
+            return View(taloLampo);
         }
 
-        // POST: TaloValot/Edit/5
+        // POST: TaloLampo/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Valo_ID,Huone,ValaisinType,Lamppu_ID,ValoTila_ID,ValonMaara,ValoTilaKirjattu")] TaloValo taloValo)
+        public ActionResult Edit([Bind(Include = "Huone_ID,Huone,HuoneTavoiteLampo,HuoneNykyLampo,LampoKirjattu")] TaloLampo taloLampo)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(taloValo).State = EntityState.Modified;
+                db.Entry(taloLampo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(taloValo);
+            return View(taloLampo);
         }
 
-        // GET: TaloValot/Delete/5
+        // GET: TaloLampo/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaloValo taloValo = db.TaloValo.Find(id);
-            if (taloValo == null)
+            TaloLampo taloLampo = db.TaloLampo.Find(id);
+            if (taloLampo == null)
             {
                 return HttpNotFound();
             }
-            return View(taloValo);
+            return View(taloLampo);
         }
 
-        // POST: TaloValot/Delete/5
+        // POST: TaloLampo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TaloValo taloValo = db.TaloValo.Find(id);
-            db.TaloValo.Remove(taloValo);
+            TaloLampo taloLampo = db.TaloLampo.Find(id);
+            db.TaloLampo.Remove(taloLampo);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

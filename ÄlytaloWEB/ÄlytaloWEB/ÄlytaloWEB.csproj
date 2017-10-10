@@ -27,6 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -175,8 +176,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TaloLammotController.cs" />
-    <Compile Include="Controllers\TaloSaunatController.cs" />
-    <Compile Include="Controllers\TaloValotController.cs" />
+    <Compile Include="Controllers\TaloLampoController.cs" />
+    <Compile Include="Controllers\TaloSaunaController.cs" />
+    <Compile Include="Controllers\TaloValoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -198,7 +200,6 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\SaunaLämpöModel.cs" />
     <Compile Include="Models\TaloLampo.cs">
       <DependentUpon>AlyTaloModels.tt</DependentUpon>
     </Compile>
@@ -210,6 +211,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\LightsViewModel.cs" />
+    <Compile Include="ViewModels\SaunaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -218,6 +221,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\jää.jpg" />
+    <Content Include="Images\jääpeilipysty.jpg" />
+    <Content Include="Images\jääpeilivaaka.jpg" />
     <Content Include="Models\AlyTaloModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AlyTaloModels.edmx</DependentUpon>
@@ -239,14 +245,20 @@
       <DependentUpon>AlyTaloModels.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\clock.js" />
+    <Content Include="Scripts\countdown.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <None Include="Scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.4.js" />
+    <Content Include="Scripts\jquery-2.2.4.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -289,16 +301,28 @@
     <Content Include="Views\TaloLammot\Details.cshtml" />
     <Content Include="Views\TaloLammot\Edit.cshtml" />
     <Content Include="Views\TaloLammot\Index.cshtml" />
-    <Content Include="Views\TaloValot\Create.cshtml" />
-    <Content Include="Views\TaloValot\Delete.cshtml" />
-    <Content Include="Views\TaloValot\Details.cshtml" />
-    <Content Include="Views\TaloValot\Edit.cshtml" />
-    <Content Include="Views\TaloValot\Index.cshtml" />
-    <Content Include="Views\TaloSaunat\Create.cshtml" />
-    <Content Include="Views\TaloSaunat\Delete.cshtml" />
-    <Content Include="Views\TaloSaunat\Details.cshtml" />
-    <Content Include="Views\TaloSaunat\Edit.cshtml" />
-    <Content Include="Views\TaloSaunat\Index.cshtml" />
+    <Content Include="Views\TaloSauna\Create.cshtml" />
+    <Content Include="Views\TaloSauna\Delete.cshtml" />
+    <Content Include="Views\TaloSauna\Details.cshtml" />
+    <Content Include="Views\TaloSauna\Edit.cshtml" />
+    <Content Include="Views\TaloSauna\Index.cshtml" />
+    <Content Include="Views\TaloLampo\Create.cshtml" />
+    <Content Include="Views\TaloLampo\Delete.cshtml" />
+    <Content Include="Views\TaloLampo\Details.cshtml" />
+    <Content Include="Views\TaloLampo\Edit.cshtml" />
+    <Content Include="Views\TaloLampo\Index.cshtml" />
+    <Content Include="Views\Home\HomeControl.cshtml" />
+    <Content Include="Views\TaloSauna\SaunaOn.cshtml" />
+    <Content Include="Views\TaloSauna\SaunaOff.cshtml" />
+    <Content Include="Views\TaloValo\Create.cshtml" />
+    <Content Include="Views\TaloValo\Delete.cshtml" />
+    <Content Include="Views\TaloValo\Details.cshtml" />
+    <Content Include="Views\TaloValo\Edit.cshtml" />
+    <Content Include="Views\TaloValo\Index.cshtml" />
+    <Content Include="Views\TaloValo\LightsOff.cshtml" />
+    <Content Include="Views\TaloValo\Light33.cshtml" />
+    <Content Include="Views\TaloValo\Light66.cshtml" />
+    <Content Include="Views\TaloValo\Light100.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

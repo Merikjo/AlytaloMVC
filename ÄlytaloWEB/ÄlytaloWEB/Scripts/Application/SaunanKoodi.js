@@ -9,13 +9,13 @@ function initSaunanTila() {
     $("#SaunanTilaButton").click(function () {
         //alert("Toimii!");
         var switched = $("#Switched").val();
-        var saunaOn = $("#SaunaOn").val();
-        alert("S: " + switched + ", O:" + saunaOn);
+        var valoOn = $("#SaunaOn").val();
+        alert("S: " + switched + ", O:" + valoOn);
 
         //määritetään muuttuja:
         var data = new SaunaLämpöModel();
         data.Switched = switched;
-        data.SaunaOn = saunaOn;
+        data.SaunaOn = valoOn;
 
         //lähetetään JSON-muotoista dataa palvelimelle
         $.ajax({

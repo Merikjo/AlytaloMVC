@@ -11,19 +11,13 @@ namespace ÄlytaloWEB.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class TaloLampo
     {
         public int Huone_ID { get; set; }
         public string Huone { get; set; }
         public string HuoneTavoiteLampo { get; set; }
         public Nullable<int> HuoneNykyLampo { get; set; }
-
-        //Lisätty 19.8.2016-->
-        [Display(Name = "lampokirjattu")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> LampoKirjattu { get; set; }
     }
 }

@@ -11,20 +11,16 @@ namespace ÄlytaloWEB.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class TaloSauna
     {
         public int Sauna_ID { get; set; }
+        public Nullable<int> SaunaNro { get; set; }
+        public string SaunanNimi { get; set; }
         public string SaunaTavoiteLampotila { get; set; }
         public string SaunaNykyLampotila { get; set; }
-        public Nullable<bool> SaunanTila { get; set; }
-
-        //Lisätty 19.8.2016-->
-        [Display(Name = "saunatilakirjattu")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> SaunaTilaKirjattu { get; set; }
-        public Nullable<int> Saunan_ID { get; set; }
-        public string SaunanNimi { get; set; }
+        public bool SaunanTila { get; set; }
+        public Nullable<System.DateTime> SaunaStart { get; set; }
+        public Nullable<System.DateTime> SaunaStop { get; set; }
     }
 }

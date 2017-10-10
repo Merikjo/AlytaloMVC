@@ -10,6 +10,19 @@ namespace ÄlytaloWEB.Controllers
     {
         public ActionResult Index()
         {
+
+            if (Session["EndDate"] == null)
+            {
+                Session["EndDate"] = DateTime.Now.AddMinutes(1).ToString("dd-MM-yyy h:mm:ss tt");
+            }
+
+            ViewBag.Message = "Muokkaa timer -tietoa";
+            ViewBag.EndDate = Session["EndDate"];
+
+            return View();
+        }
+        public ActionResult HomeControl()
+        {
             return View();
         }
 

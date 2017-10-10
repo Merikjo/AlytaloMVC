@@ -20,12 +20,13 @@
             <PropertyRef Name="Sauna_ID" />
           </Key>
           <Property Name="Sauna_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Saunan_ID" Type="int" />
+          <Property Name="SaunaNro" Type="int" />
           <Property Name="SaunanNimi" Type="nvarchar" MaxLength="50" />
           <Property Name="SaunaTavoiteLampotila" Type="nvarchar" MaxLength="20" />
           <Property Name="SaunaNykyLampotila" Type="nvarchar" MaxLength="20" />
-          <Property Name="SaunanTila" Type="bit" />
-          <Property Name="SaunaTilaKirjattu" Type="datetime" />
+          <Property Name="SaunanTila" Type="bit" Nullable="false" />
+          <Property Name="SaunaStart" Type="datetime" />
+          <Property Name="SaunaStop" Type="datetime" />
         </EntityType>
         <EntityType Name="TaloValo">
           <Key>
@@ -35,9 +36,14 @@
           <Property Name="Huone" Type="nvarchar" MaxLength="50" />
           <Property Name="ValaisinType" Type="nvarchar" MaxLength="50" />
           <Property Name="Lamppu_ID" Type="varchar" MaxLength="5" />
-          <Property Name="ValoTila_ID" Type="int" />
-          <Property Name="ValonMaara" Type="nvarchar" MaxLength="50" />
-          <Property Name="ValoTilaKirjattu" Type="datetime" />
+          <Property Name="ValoTilaOff" Type="bit" Nullable="false" />
+          <Property Name="Valo33" Type="bit" Nullable="false" />
+          <Property Name="Valo66" Type="bit" Nullable="false" />
+          <Property Name="Valo100" Type="bit" Nullable="false" />
+          <Property Name="ValoOn33" Type="datetime" />
+          <Property Name="ValoOn66" Type="datetime" />
+          <Property Name="ValoOn100" Type="datetime" />
+          <Property Name="ValoOff" Type="datetime" />
         </EntityType>
         <EntityContainer Name="JohaMeriSQL1ModelStoreContainer">
           <EntitySet Name="TaloLampo" EntityType="Self.TaloLampo" Schema="dbo" store:Type="Tables" />
@@ -68,12 +74,13 @@
             <PropertyRef Name="Sauna_ID" />
           </Key>
           <Property Name="Sauna_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaunaNro" Type="Int32" />
+          <Property Name="SaunanNimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SaunaTavoiteLampotila" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="SaunaNykyLampotila" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="SaunanTila" Type="Boolean" />
-          <Property Name="SaunaTilaKirjattu" Type="DateTime" Precision="3" />
-          <Property Name="Saunan_ID" Type="Int32" />
-          <Property Name="SaunanNimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SaunanTila" Type="Boolean" Nullable="false" />
+          <Property Name="SaunaStart" Type="DateTime" Precision="3" />
+          <Property Name="SaunaStop" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="TaloValo">
           <Key>
@@ -82,12 +89,17 @@
           <Property Name="Valo_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Huone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ValaisinType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Lamppu_ID" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
-          <Property Name="ValoTila_ID" Type="Int32" />
-          <Property Name="ValonMaara" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ValoTilaKirjattu" Type="DateTime" Precision="3" />
+          <Property Name="Lamppu_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ValoTilaOff" Type="Boolean" Nullable="false" />
+          <Property Name="Valo33" Type="Boolean" Nullable="false" />
+          <Property Name="Valo66" Type="Boolean" Nullable="false" />
+          <Property Name="Valo100" Type="Boolean" Nullable="false" />
+          <Property Name="ValoOn33" Type="DateTime" Precision="3" />
+          <Property Name="ValoOn66" Type="DateTime" Precision="3" />
+          <Property Name="ValoOn100" Type="DateTime" Precision="3" />
+          <Property Name="ValoOff" Type="DateTime" Precision="3" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -107,12 +119,13 @@
           <EntitySetMapping Name="TaloSauna">
             <EntityTypeMapping TypeName="JohaMeriSQL1Model.TaloSauna">
               <MappingFragment StoreEntitySet="TaloSauna">
-                <ScalarProperty Name="SaunanNimi" ColumnName="SaunanNimi" />
-                <ScalarProperty Name="Saunan_ID" ColumnName="Saunan_ID" />
-                <ScalarProperty Name="SaunaTilaKirjattu" ColumnName="SaunaTilaKirjattu" />
+                <ScalarProperty Name="SaunaStop" ColumnName="SaunaStop" />
+                <ScalarProperty Name="SaunaStart" ColumnName="SaunaStart" />
                 <ScalarProperty Name="SaunanTila" ColumnName="SaunanTila" />
                 <ScalarProperty Name="SaunaNykyLampotila" ColumnName="SaunaNykyLampotila" />
                 <ScalarProperty Name="SaunaTavoiteLampotila" ColumnName="SaunaTavoiteLampotila" />
+                <ScalarProperty Name="SaunanNimi" ColumnName="SaunanNimi" />
+                <ScalarProperty Name="SaunaNro" ColumnName="SaunaNro" />
                 <ScalarProperty Name="Sauna_ID" ColumnName="Sauna_ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -120,9 +133,14 @@
           <EntitySetMapping Name="TaloValo">
             <EntityTypeMapping TypeName="JohaMeriSQL1Model.TaloValo">
               <MappingFragment StoreEntitySet="TaloValo">
-                <ScalarProperty Name="ValoTilaKirjattu" ColumnName="ValoTilaKirjattu" />
-                <ScalarProperty Name="ValonMaara" ColumnName="ValonMaara" />
-                <ScalarProperty Name="ValoTila_ID" ColumnName="ValoTila_ID" />
+                <ScalarProperty Name="ValoOff" ColumnName="ValoOff" />
+                <ScalarProperty Name="ValoOn100" ColumnName="ValoOn100" />
+                <ScalarProperty Name="ValoOn66" ColumnName="ValoOn66" />
+                <ScalarProperty Name="ValoOn33" ColumnName="ValoOn33" />
+                <ScalarProperty Name="Valo100" ColumnName="Valo100" />
+                <ScalarProperty Name="Valo66" ColumnName="Valo66" />
+                <ScalarProperty Name="Valo33" ColumnName="Valo33" />
+                <ScalarProperty Name="ValoTilaOff" ColumnName="ValoTilaOff" />
                 <ScalarProperty Name="Lamppu_ID" ColumnName="Lamppu_ID" />
                 <ScalarProperty Name="ValaisinType" ColumnName="ValaisinType" />
                 <ScalarProperty Name="Huone" ColumnName="Huone" />
