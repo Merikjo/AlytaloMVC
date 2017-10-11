@@ -128,10 +128,10 @@ namespace ÄlytaloWEB.Controllers
         public ActionResult Create(SaunaViewModel model)
         {
             TaloSauna sauna = new TaloSauna();
-            sauna.SaunanNimi = model.SaunanNimi;
+            sauna.SaunaNro = model.SaunaNro;
+            sauna.SaunanNimi = model.SaunanNimi;       
             sauna.SaunaStart = model.SaunaStart;
-            sauna.SaunaStop = model.SaunaStop;
-            sauna.SaunaNro = model.SaunaNro;          
+            sauna.SaunaStop = model.SaunaStop;                    
             sauna.SaunaTavoiteLampotila = model.SaunaTavoiteLampotila;
             sauna.SaunaNykyLampotila = model.SaunaNykyLampotila;   
             sauna.SaunanTila = model.SaunanTila;

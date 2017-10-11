@@ -5,6 +5,22 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/jquery-2.2.4.js"></script>
+    @*<script src="~/Scripts/jquery-3.2.1.min.js"></script>*@
+
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -12,20 +28,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/Site.css" rel="stylesheet" />
-
-<script src="~/Scripts/modernizr-2.8.3.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<script src="/Scripts/bootstrap.js"></script>
-<script src="/Scripts/respond.js"></script>
-<script src="~/Scripts/jquery-2.2.4.js"></script>
-@*<script src="~/Scripts/jquery-3.2.1.min.js"></script>*@
-
-<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<script src="http://code.jquery.com/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-
-
 
 
 <style>
@@ -63,7 +66,30 @@
     a:active {
         color: blue;
     }
+
+    div.pallot {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        opacity: 0.8;
+        text-align: center;
+        filter: alpha(opacity=60); /* For IE8 and earlier */
+        /*filter: drop-shadow(8px 8px 10px #313030);*/
+        /*filter: blur(5px);*/
+    }
+
+    .w3-myfont {
+        font-family: "Comic Sans MS", /*cursive,*/, sans-serif;
+        font-size: 45px;
+        opacity: 0.9;
+    }
+
+    div.sidebarClock {
+        margin-top: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 </style>
+
 
 <script>
             var dt = '@ViewBag.EndDate';
@@ -142,6 +168,7 @@
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTiMTzgFGphHJTGCc1p4D9UTipHyDg5MU&callback=myMap"></script>
             @*</div>*@
 
+            @*//Countdown asetukset*@
             <p id="demo"></p>
 
             <script>
@@ -176,22 +203,53 @@
                 </ul>
             </div>
 
+            <div class="pallot">
 
+                <div class="col-sm-3">
+                    <div class="w3-display-container w3-text-white w3-text-shadow">
+                        <a href="~/TaloSauna/Index" target="_blank"><img class="img-circle" src="~/Images/jää.jpg" alt="jääbutton" width="200" height="200"></a>
+                        <div class="w3-display-middle w3-myfont">SAUNA</div>
+                    </div>
+                </div><!-- /.col-lg-3 -->
 
-            <div class="col-md-12">
+                <div class="col-sm-3">
+                    <div class="w3-display-container w3-text-white w3-text-shadow">
+                        <a href="~/TaloValo/Index" target="_blank"><img class="img-circle" src="~/Images/jää.jpg" alt="jääbutton" width="200" height="200"></a>
+                        <div class="w3-display-middle w3-myfont">VALOT</div>
+                    </div>
+                </div><!-- /.col-lg-3 -->
+
+                <div class="col-sm-3">
+                    <div class="w3-display-container w3-text-wh
+                         ite w3-text-shadow">
+                        <a href="~/TaloLampo/Index" target="_blank"><img class="img-circle" src="~/Images/jää.jpg" alt="jääbutton" width="200" height="200"></a>
+                        <div class="w3-display-middle w3-myfont">LÄMPÖ</div>
+                    </div>
+                </div><!-- /.col-lg-3 -->
+
+                <div class="col-sm-3">
+                    <div class="w3-display-container w3-text-white w3-text-shadow">
+                        <a href="~/TaloIlma/Index" target="_blank"><img class="img-circle" src="~/Images/jää.jpg" alt="jääbutton" width="200" height="200"></a>
+                        <div class="w3-display-middle w3-myfont">ILMA</div>
+                    </div>
+                </div><!-- /.col-lg-3 -->
+
+            </div>
+
+            @*<div class="col-md-12">
                 <div class="form-actions no-color">
                     <div class="btn-group btn-group-vertical btn-lg">
                         <hr>
-                        @*<a href="~/TaloSauna/SaunaOn" class="btn btn-default" style="width:250px;">SAUNA ON&raquo;</a><hr>*@
+                        <a href="~/TaloSauna/SaunaOn" class="btn btn-default" style="width:250px;">SAUNA ON&raquo;</a><hr>
                         <p><a href="~/TaloSauna/Edit" class="w3-btn w3-large">SAUNA ON</a></p>
                       
                         <a href="~/TaloSauna" class="btn btn-default" style="width:250px;">TALOSAUNA&raquo;</a><hr>
                         <a href="~/TaloLammot" class="btn btn-default" style="width:250px;">LÄMMITYS&raquo;</a><hr>
                         <a href="~/TaloValo" class="btn btn-default" style="width:250px;">VALAISTUS&raquo;</a><hr>
-                       
+                                           
                     </div>
                 </div>
-            </div>
+            </div>*@
 
             <!--CLOCK OPTIONS-->
             <script src="~/Scripts/clock.js"></script>
@@ -244,7 +302,7 @@
         </script>
 
 
-<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-2.2.4.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
