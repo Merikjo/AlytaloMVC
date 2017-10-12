@@ -262,7 +262,7 @@ namespace ÄlytaloWEB.Controllers
             sauna.Sauna_ID = taloSauna.Sauna_ID;
             sauna.SaunaNro = taloSauna.SaunaNro;
             sauna.SaunanNimi = taloSauna.SaunanNimi;
-            sauna.SaunaStop = taloSauna.SaunaStart.GetValueOrDefault();
+            sauna.SaunaStop = taloSauna.SaunaStop.GetValueOrDefault();
             sauna.SaunanTila = false;
 
             ViewBag.SaunanNimi = new SelectList((from ts in db.TaloSauna select new { Sauna_ID = ts.Sauna_ID, SaunanNimi = ts.SaunanNimi }), "Sauna_ID", "SaunanNimi", sauna.Sauna_ID);

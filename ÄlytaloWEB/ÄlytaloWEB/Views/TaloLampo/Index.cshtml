@@ -1,51 +1,109 @@
-﻿@model IEnumerable<ÄlytaloWEB.Models.TaloLampo>
+﻿@model IEnumerable<ÄlytaloWEB.ViewModels.LampoViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<script src="~/Scripts/modernizr-2.8.3.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="/Scripts/bootstrap.js"></script>
+<script src="/Scripts/respond.js"></script>
+<script src="~/Scripts/jquery-2.2.4.js"></script>
+@*<script src="~/Scripts/jquery-3.2.1.min.js"></script>*@
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Huone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HuoneTavoiteLampo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HuoneNykyLampo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LampoKirjattu)
-        </th>
-        <th></th>
-    </tr>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Huone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HuoneTavoiteLampo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HuoneNykyLampo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LampoKirjattu)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Huone_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Huone_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Huone_ID })
-        </td>
-    </tr>
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<div class="w3-container">
+    <div class="background">
+        <div class="jumbotron">
+
+            <h2>Huoneiden lämpötilojen säätö</h2>
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Huone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HuoneNykyLampo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HuoneTavoiteLampo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LampoKirjattu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LampoOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LampoOff)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Huone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HuoneNykyLampo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HuoneTavoiteLampo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LampoKirjattu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LampoOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LampoOff)
+                        </td>
+                        <td>
+                            @Html.ActionLink("ON", "LampoON", new { id = item.Huone_ID }) |
+                            @Html.ActionLink("OFF", "LampoOFF", new { id = item.Huone_ID }) |
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Huone_ID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Huone_ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Huone_ID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-2.2.4.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
 }
-
-</table>

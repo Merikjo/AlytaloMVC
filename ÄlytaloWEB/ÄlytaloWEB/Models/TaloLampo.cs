@@ -17,7 +17,9 @@ namespace ÄlytaloWEB.Models
         public int Huone_ID { get; set; }
         public string Huone { get; set; }
         public string HuoneTavoiteLampo { get; set; }
-        public Nullable<int> HuoneNykyLampo { get; set; }
+        public string HuoneNykyLampo { get; set; }
         public Nullable<System.DateTime> LampoKirjattu { get; set; }
+        public bool LampoOn { get; set; }
+        public bool LampoOff { get; set; }
     }
 }

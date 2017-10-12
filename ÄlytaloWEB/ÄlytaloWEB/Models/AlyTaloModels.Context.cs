@@ -25,8 +25,8 @@ namespace ÄlytaloWEB.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<TaloLampo> TaloLampo { get; set; }
         public virtual DbSet<TaloSauna> TaloSauna { get; set; }
         public virtual DbSet<TaloValo> TaloValo { get; set; }
+        public virtual DbSet<TaloLampo> TaloLampo { get; set; }
     }
 }

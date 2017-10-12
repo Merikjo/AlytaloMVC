@@ -5,9 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="04092032d8974e96b201653fb7a4e0f8" Name="Diagram1">
-        <EntityTypeShape EntityType="JohaMeriSQL1Model.TaloLampo" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="JohaMeriSQL1Model.TaloSauna" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="JohaMeriSQL1Model.TaloValo" Width="1.5" PointX="4.875" PointY="0.875" />
+        <EntityTypeShape EntityType="JohaMeriSQL1Model.TaloLampo" Width="1.5" PointX="1" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

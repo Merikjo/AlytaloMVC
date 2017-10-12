@@ -1,4 +1,4 @@
-﻿@model ÄlytaloWEB.Models.TaloLampo
+﻿@model ÄlytaloWEB.ViewModels.LampoViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -40,6 +40,20 @@
 
         <dd>
             @Html.DisplayFor(model => model.LampoKirjattu)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LampoOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LampoOn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LampoOff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LampoOff)
         </dd>
 
     </dl>

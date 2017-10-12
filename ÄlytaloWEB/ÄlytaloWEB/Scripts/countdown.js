@@ -58,14 +58,12 @@
                 thisEl.find(".minutes").text(minutes);
                 thisEl.find(".seconds").text(seconds);
             } else {
-                alert("Invalid date. Here's an example: 2010-01-01T00:00:00
-                    ");
+                alert("Invalid date. Here's an example: 2010-01-01T00:00:00");
                 clearInterval(interval);
             }
         }
         //run the function
         countdown_proc();
-
         //loop the function
         interval = setInterval(countdown_proc, 1000);
     }

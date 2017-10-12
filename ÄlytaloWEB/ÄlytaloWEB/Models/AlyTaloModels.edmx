@@ -12,8 +12,10 @@
           <Property Name="Huone_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Huone" Type="nvarchar" MaxLength="50" />
           <Property Name="HuoneTavoiteLampo" Type="nvarchar" MaxLength="50" />
-          <Property Name="HuoneNykyLampo" Type="int" />
+          <Property Name="HuoneNykyLampo" Type="nvarchar" MaxLength="50" />
           <Property Name="LampoKirjattu" Type="datetime" />
+          <Property Name="LampoOn" Type="bit" Nullable="false" />
+          <Property Name="LampoOff" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TaloSauna">
           <Key>
@@ -55,20 +57,10 @@
     <edmx:ConceptualModels>
       <Schema Namespace="JohaMeriSQL1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="JohaMeriSQL1Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="TaloLampo" EntityType="JohaMeriSQL1Model.TaloLampo" />
           <EntitySet Name="TaloSauna" EntityType="JohaMeriSQL1Model.TaloSauna" />
           <EntitySet Name="TaloValo" EntityType="JohaMeriSQL1Model.TaloValo" />
+          <EntitySet Name="TaloLampo" EntityType="JohaMeriSQL1Model.TaloLampo" />
         </EntityContainer>
-        <EntityType Name="TaloLampo">
-          <Key>
-            <PropertyRef Name="Huone_ID" />
-          </Key>
-          <Property Name="Huone_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Huone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HuoneTavoiteLampo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HuoneNykyLampo" Type="Int32" />
-          <Property Name="LampoKirjattu" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="TaloSauna">
           <Key>
             <PropertyRef Name="Sauna_ID" />
@@ -99,23 +91,24 @@
           <Property Name="ValoOn100" Type="DateTime" Precision="3" />
           <Property Name="ValoOff" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="TaloLampo">
+          <Key>
+            <PropertyRef Name="Huone_ID" />
+          </Key>
+          <Property Name="Huone_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Huone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HuoneTavoiteLampo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HuoneNykyLampo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LampoKirjattu" Type="DateTime" Precision="3" />
+          <Property Name="LampoOn" Type="Boolean" Nullable="false" />
+          <Property Name="LampoOff" Type="Boolean" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="JohaMeriSQL1ModelStoreContainer" CdmEntityContainer="JohaMeriSQL1Entities">
-          <EntitySetMapping Name="TaloLampo">
-            <EntityTypeMapping TypeName="JohaMeriSQL1Model.TaloLampo">
-              <MappingFragment StoreEntitySet="TaloLampo">
-                <ScalarProperty Name="LampoKirjattu" ColumnName="LampoKirjattu" />
-                <ScalarProperty Name="HuoneNykyLampo" ColumnName="HuoneNykyLampo" />
-                <ScalarProperty Name="HuoneTavoiteLampo" ColumnName="HuoneTavoiteLampo" />
-                <ScalarProperty Name="Huone" ColumnName="Huone" />
-                <ScalarProperty Name="Huone_ID" ColumnName="Huone_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TaloSauna">
             <EntityTypeMapping TypeName="JohaMeriSQL1Model.TaloSauna">
               <MappingFragment StoreEntitySet="TaloSauna">
@@ -145,6 +138,19 @@
                 <ScalarProperty Name="ValaisinType" ColumnName="ValaisinType" />
                 <ScalarProperty Name="Huone" ColumnName="Huone" />
                 <ScalarProperty Name="Valo_ID" ColumnName="Valo_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaloLampo">
+            <EntityTypeMapping TypeName="JohaMeriSQL1Model.TaloLampo">
+              <MappingFragment StoreEntitySet="TaloLampo">
+                <ScalarProperty Name="LampoOff" ColumnName="LampoOff" />
+                <ScalarProperty Name="LampoOn" ColumnName="LampoOn" />
+                <ScalarProperty Name="LampoKirjattu" ColumnName="LampoKirjattu" />
+                <ScalarProperty Name="HuoneNykyLampo" ColumnName="HuoneNykyLampo" />
+                <ScalarProperty Name="HuoneTavoiteLampo" ColumnName="HuoneTavoiteLampo" />
+                <ScalarProperty Name="Huone" ColumnName="Huone" />
+                <ScalarProperty Name="Huone_ID" ColumnName="Huone_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
