@@ -14,14 +14,14 @@ namespace ÄlytaloWEB.Controllers
 {
     public class TaloLampoController : Controller
     {
-        private JohaMeriSQL1Entities db = new JohaMeriSQL1Entities();
+        private JohaMeriSQL2Entities db = new JohaMeriSQL2Entities();
 
         // GET: TaloLampo
         public ActionResult Index()
         {
             List<LampoViewModel> model = new List<LampoViewModel>();
 
-            JohaMeriSQL1Entities entities = new JohaMeriSQL1Entities();
+            JohaMeriSQL2Entities entities = new JohaMeriSQL2Entities();
 
             try
             {
@@ -57,12 +57,10 @@ namespace ÄlytaloWEB.Controllers
         {
             LampoViewModel model = new LampoViewModel();
 
-            JohaMeriSQL1Entities entities = new JohaMeriSQL1Entities();
+            JohaMeriSQL2Entities entities = new JohaMeriSQL2Entities();
 
             try
-            {
-
-   
+            { 
                 TaloLampo taloLampo = db.TaloLampo.Find(id);
                 if (taloLampo == null)
             {
@@ -72,7 +70,6 @@ namespace ÄlytaloWEB.Controllers
                 TaloLampo lampodetail = entities.TaloLampo.Find(taloLampo.Huone_ID);
 
                 LampoViewModel lampo = new LampoViewModel();
-
                 lampo.Huone_ID = lampodetail.Huone_ID;
                 lampo.Huone = lampodetail.Huone;
                 lampo.HuoneNykyLampo = lampodetail.HuoneNykyLampo;
@@ -96,7 +93,7 @@ namespace ÄlytaloWEB.Controllers
         // GET: TaloLampo/Create
         public ActionResult Create()
         {
-            JohaMeriSQL1Entities db = new JohaMeriSQL1Entities();
+            JohaMeriSQL2Entities db = new JohaMeriSQL2Entities();
 
             LampoViewModel model = new LampoViewModel();
 
@@ -159,7 +156,7 @@ namespace ÄlytaloWEB.Controllers
         public ActionResult Edit(LampoViewModel model)
             {
                 TaloLampo lampo = db.TaloLampo.Find(model.Huone_ID);
-                lampo.Huone_ID = model.Huone_ID;
+                //lampo.Huone_ID = model.Huone_ID;
                 lampo.Huone = model.Huone;
                 lampo.HuoneNykyLampo = model.HuoneNykyLampo;
                 lampo.HuoneTavoiteLampo = model.HuoneTavoiteLampo;

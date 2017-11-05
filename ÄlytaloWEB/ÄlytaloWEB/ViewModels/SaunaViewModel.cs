@@ -8,11 +8,17 @@ namespace ÄlytaloWEB.ViewModels
 {
     public class SaunaViewModel
     {
-        public int? Sauna_ID { get; set; }
+        public int Sauna_ID { get; set; }
         public int? SaunaNro { get; set; }
         public string SaunanNimi { get; set; }
+
+        [Display(Name = "Tavoitelämpö")]
         public string SaunaTavoiteLampotila { get; set; }
+
+        [Display(Name = "Nykylämpö")]
         public string SaunaNykyLampotila { get; set; }
+
+        [Display(Name = "ON / OFF")]
         public bool SaunanTila { get; set; }
 
         //[DataType(DataType.Date)]
@@ -34,8 +40,13 @@ namespace ÄlytaloWEB.ViewModels
         public DateTime Time { get; set; }
 
        
-        public string Aika { get; set; }
+        public string SaunaAika { get; set; }
 
+        [Display(Name = "Sauna Aika")]
+        //[DataType(DataType.Time)]
+        //[DisplayFormat(DataFormatString = "{0:HH\\:mm}", ApplyFormatInEditMode = true)]
+        //[StringLength(4)]
+        public Double TotalHours { get; set; }
 
         public bool Switched { get; set; }
         public void SaunaOn(int tila)

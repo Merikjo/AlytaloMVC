@@ -36,7 +36,7 @@
                 @Html.ActionLink("Create New Light", "Create")
 
             </p>
-            <table class="table">
+            <table class="table table-hover table-striped">
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.Huone)
@@ -78,6 +78,7 @@
                 {
                     <tr>
                         <td>
+                            <img id="myImage" src="~/Images/LightPicture1.png" style="width:20px">
                             @Html.DisplayFor(modelItem => item.Huone)
                         </td>
                         <td>
@@ -111,6 +112,8 @@
                             @Html.DisplayFor(modelItem => item.ValoOff)
                         </td>
                         <td>
+                            <button onclick="document.getElementById('myImage').src='Images/LightPicture1.png'+"@Html.DisplayFor(modelItem => item.Valo_ID)>ON</button>
+                            <button onclick="document.getElementById('myImage').src='Images/LightPicture2.jpg'+"@Html.DisplayFor(modelItem => item.Valo_ID)>OFF</button>
                             @Html.ActionLink("Off", "LightsOff", new { id = item.Valo_ID }) |
                             @Html.ActionLink("33", "Light33", new { id = item.Valo_ID }) |
                             @Html.ActionLink("66", "Light66", new { id = item.Valo_ID }) |
@@ -127,6 +130,9 @@
         </div>
     </div>
 </div>
+
+<button onclick="document.getElementById('myImage').src='Images/LightPicture1.png'">ON</button>
+<button onclick="document.getElementById('myImage').src='Images/LightPicture2.jpg'">OFF</button>
 
 
 <script src="~/Scripts/jquery-2.2.4.min.js"></script>

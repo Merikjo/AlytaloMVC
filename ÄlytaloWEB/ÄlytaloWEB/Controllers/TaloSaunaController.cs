@@ -14,18 +14,18 @@ namespace ÄlytaloWEB.Controllers
 {
     public class TaloSaunaController : Controller
     {
-        private JohaMeriSQL1Entities db = new JohaMeriSQL1Entities();
+        private JohaMeriSQL2Entities db = new JohaMeriSQL2Entities();
 
         // GET: TaloSauna
         public ActionResult Index()
         {
             List<SaunaViewModel> model = new List<SaunaViewModel>();
 
-            JohaMeriSQL1Entities entities = new JohaMeriSQL1Entities();
+            JohaMeriSQL2Entities entities = new JohaMeriSQL2Entities();
 
             try
             {
-                List<TaloSauna> talosaunat = entities.TaloSauna.OrderByDescending(TaloSauna => TaloSauna.SaunanTila).ToList();
+                List<TaloSauna> talosaunat = entities.TaloSauna.OrderByDescending(TaloSauna => TaloSauna.SaunaNro).ToList();
 
                 // muodostetaan näkymämalli tietokannan rivien pohjalta
                 foreach (TaloSauna talosauna in talosaunat)
@@ -36,35 +36,54 @@ namespace ÄlytaloWEB.Controllers
                     sauna.SaunanNimi = talosauna.SaunanNimi;
                     sauna.SaunaTavoiteLampotila = talosauna.SaunaTavoiteLampotila;
                     sauna.SaunaNykyLampotila = talosauna.SaunaNykyLampotila;
-                    sauna.SaunaStart = talosauna.SaunaStart;
-                    sauna.SaunaStop = talosauna.SaunaStop;
+                    sauna.SaunaStart = talosauna?.SaunaStart;
+                    sauna.SaunaStop = talosauna?.SaunaStop;
                     sauna.SaunanTila = talosauna.SaunanTila;
-                    sauna.Time = DateTime.Now;
+                   
+                    //sauna.Time = DateTime.Now;
 
+                    //if (talosauna != null)
+                    //{
+                        sauna.TotalHours = (talosauna.SaunaStop.GetValueOrDefault() - talosauna.SaunaStart.GetValueOrDefault()).TotalHours;
+                    //}
+                    //else
+                    //{
+                    //    sauna = new SaunaViewModel()
+                    //    {
+                    //        Sauna_ID = talosauna.Sauna_ID,
+                    //        SaunaNro = talosauna.SaunaNro,
+                    //        SaunanNimi = talosauna.SaunanNimi,
+                    //        SaunaTavoiteLampotila = talosauna.SaunaTavoiteLampotila,
+                    //        SaunaNykyLampotila = talosauna.SaunaNykyLampotila,
+                    //        SaunaStart = talosauna?.SaunaStart,
+                    //        SaunaStop = talosauna?.SaunaStop,
+                    //        SaunanTila = talosauna.SaunanTila,
+                    //    TotalHours = (talosauna.SaunaStop.GetValueOrDefault() - talosauna.SaunaStart.GetValueOrDefault()).TotalHours
+                    //    };
 
-                    DateTime SaunaStart = new DateTime(2001, 1, 1);
+                        //DateTime SaunaStart = new DateTime(2001, 1, 1);
 
-                    //long elapsedTicks = talosauna.SaunaStart.Ticks - talosauna.SaunaStop.Ticks;
-                    //TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+                        ////long elapsedTicks = talosauna.SaunaStart.Ticks - talosauna.SaunaStop.Ticks;
+                        ////TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
 
-                    if (Session["EndDate"] == null)
-                    {
-                        Session["EndDate"] = DateTime.Now.AddMinutes(1).ToString("dd-MM-yyy h:mm:ss tt");
+                        //if (Session["EndDate"] == null)
+                        //{
+                        //    Session["EndDate"] = DateTime.Now.AddMinutes(1).ToString("dd-MM-yyy h:mm:ss tt");
+                        //}
+
+                        //ViewBag.Message = "Muokkaa timer -tietoa";
+                        //ViewBag.EndDate = Session["EndDate"];
+
+                        model.Add(sauna);
                     }
-
-                    ViewBag.Message = "Muokkaa timer -tietoa";
-                    ViewBag.EndDate = Session["EndDate"];
-
-                    model.Add(sauna);
-                }
+                
+                return View(model);
             }
+
             finally
             {
                 entities.Dispose();
             }
-
-            return View(model);
-
         }
 
         CultureInfo fiFi = new CultureInfo("fi-FI");
@@ -73,21 +92,20 @@ namespace ÄlytaloWEB.Controllers
         public ActionResult Details(int? id)
         { 
             SaunaViewModel model = new SaunaViewModel();
-            JohaMeriSQL1Entities entities = new JohaMeriSQL1Entities();
+            JohaMeriSQL2Entities entities = new JohaMeriSQL2Entities();
 
             try
             {
                 TaloSauna taloSauna = db.TaloSauna.Find(id);
                 if (taloSauna == null)
            
-            {
+                {
                 return HttpNotFound();
-            }
+                }
 
                 TaloSauna saunadetail = entities.TaloSauna.Find(taloSauna.Sauna_ID);
 
                 SaunaViewModel sauna = new SaunaViewModel();
-
                 sauna.Sauna_ID = saunadetail.Sauna_ID;
                 sauna.SaunaNro = saunadetail.SaunaNro;
                 sauna.SaunanNimi = saunadetail.SaunanNimi;
@@ -111,7 +129,7 @@ namespace ÄlytaloWEB.Controllers
         // GET: TaloSauna/Create
         public ActionResult Create()
         {
-            JohaMeriSQL1Entities db = new JohaMeriSQL1Entities();
+            JohaMeriSQL2Entities db = new JohaMeriSQL2Entities();
 
             SaunaViewModel model = new SaunaViewModel();
 
@@ -128,13 +146,14 @@ namespace ÄlytaloWEB.Controllers
         public ActionResult Create(SaunaViewModel model)
         {
             TaloSauna sauna = new TaloSauna();
+            sauna.Sauna_ID = model.Sauna_ID;
             sauna.SaunaNro = model.SaunaNro;
             sauna.SaunanNimi = model.SaunanNimi;       
-            sauna.SaunaStart = model.SaunaStart;
-            sauna.SaunaStop = model.SaunaStop;                    
+            //sauna.SaunaStart = model.SaunaStart;
+            //sauna.SaunaStop = model.SaunaStop;                    
             sauna.SaunaTavoiteLampotila = model.SaunaTavoiteLampotila;
             sauna.SaunaNykyLampotila = model.SaunaNykyLampotila;   
-            sauna.SaunanTila = model.SaunanTila;
+            //sauna.SaunanTila = model.SaunanTila;
 
             db.TaloSauna.Add(sauna);
 
@@ -199,6 +218,7 @@ namespace ÄlytaloWEB.Controllers
             ViewBag.SaunanNimi = new SelectList((from ts in db.TaloSauna select new { Sauna_ID = ts.Sauna_ID, SaunanNimi = ts.SaunanNimi }), "Sauna_ID", "SaunanNimi", sauna.Sauna_ID);
 
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }//edit
 
@@ -220,7 +240,7 @@ namespace ÄlytaloWEB.Controllers
             sauna.Sauna_ID = taloSauna.Sauna_ID;
             sauna.SaunaNro = taloSauna.SaunaNro;
             sauna.SaunanNimi = taloSauna.SaunanNimi;
-            sauna.SaunaStart = taloSauna.SaunaStart.GetValueOrDefault();
+            sauna.SaunaStart = taloSauna.SaunaStart;
             sauna.SaunanTila = true;
 
             ViewBag.SaunanNimi = new SelectList((from ts in db.TaloSauna select new { Sauna_ID = ts.Sauna_ID, SaunanNimi = ts.SaunanNimi }), "Sauna_ID", "SaunanNimi", sauna.Sauna_ID);
@@ -262,7 +282,7 @@ namespace ÄlytaloWEB.Controllers
             sauna.Sauna_ID = taloSauna.Sauna_ID;
             sauna.SaunaNro = taloSauna.SaunaNro;
             sauna.SaunanNimi = taloSauna.SaunanNimi;
-            sauna.SaunaStop = taloSauna.SaunaStop.GetValueOrDefault();
+            sauna.SaunaStop = taloSauna.SaunaStop;
             sauna.SaunanTila = false;
 
             ViewBag.SaunanNimi = new SelectList((from ts in db.TaloSauna select new { Sauna_ID = ts.Sauna_ID, SaunanNimi = ts.SaunanNimi }), "Sauna_ID", "SaunanNimi", sauna.Sauna_ID);

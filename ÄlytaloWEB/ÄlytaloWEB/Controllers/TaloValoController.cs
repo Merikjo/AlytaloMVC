@@ -14,14 +14,13 @@ namespace ÄlytaloWEB.Controllers
 {
     public class TaloValoController : Controller
     {
-        private JohaMeriSQL1Entities db = new JohaMeriSQL1Entities();
+        private JohaMeriSQL2Entities db = new JohaMeriSQL2Entities();
 
         // GET: TaloValo
         public ActionResult Index()
         {
             List<LightsViewModel> model = new List<LightsViewModel>();
-
-            JohaMeriSQL1Entities entities = new JohaMeriSQL1Entities();
+            JohaMeriSQL2Entities entities = new JohaMeriSQL2Entities();
 
             try
             {
@@ -62,16 +61,14 @@ namespace ÄlytaloWEB.Controllers
         // GET: TaloValo/Details/5
         public ActionResult Details(int? id)
         {
-
             LightsViewModel model = new LightsViewModel();
 
-            JohaMeriSQL1Entities entities = new JohaMeriSQL1Entities();
+            JohaMeriSQL2Entities entities = new JohaMeriSQL2Entities();
             try
             {
                 TaloValo taloValo = db.TaloValo.Find(id);
                 if (taloValo == null)
                 {
-
                     return HttpNotFound();
                 }
 
@@ -100,13 +97,13 @@ namespace ÄlytaloWEB.Controllers
             }
 
             return View(model);
-
         }
 
         // GET: TaloValo/Create
         public ActionResult Create()
         {
-            JohaMeriSQL1Entities db = new JohaMeriSQL1Entities();
+            JohaMeriSQL2Entities db = new JohaMeriSQL2Entities();
+
             LightsViewModel model = new LightsViewModel();
 
             ViewBag.Huone = new SelectList((from tv in db.TaloValo select new { Valo_ID = tv.Valo_ID, Huone = tv.Huone }), "Valo_ID", "Huone", null);
@@ -116,8 +113,6 @@ namespace ÄlytaloWEB.Controllers
         }
 
         // POST: TaloValo/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(LightsViewModel model)
@@ -185,8 +180,8 @@ namespace ÄlytaloWEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(LightsViewModel model)
         {
-            TaloValo valo = new TaloValo();
-            valo.Valo_ID = model.Valo_ID;
+            TaloValo valo = db.TaloValo.Find(model.Valo_ID);
+            //valo.Valo_ID = model.Valo_ID;
             valo.Huone = model.Huone;
             valo.ValaisinType = model.ValaisinType;
             valo.Lamppu_ID = model.Lamppu_ID;

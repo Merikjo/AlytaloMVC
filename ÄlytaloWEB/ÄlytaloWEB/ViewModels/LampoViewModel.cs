@@ -14,5 +14,7 @@ namespace ÄlytaloWEB.ViewModels
         public DateTime? LampoKirjattu { get; set; }
         public bool LampoOn { get; set; }
         public bool LampoOff { get; set; }
+
+        public char Astemerkki { get; set; }
     }
 }

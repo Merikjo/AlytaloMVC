@@ -10,6 +10,7 @@ namespace ÄlytaloWEB.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Selain = Request.UserAgent;
 
             if (Session["EndDate"] == null)
             {

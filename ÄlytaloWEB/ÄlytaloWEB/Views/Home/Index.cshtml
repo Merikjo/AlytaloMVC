@@ -2,14 +2,41 @@
     ViewBag.Title = "Home Page";
 }
 
+@section scripts{
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+@Scripts.Render("~/bundles/jqueryval")
+       
+<script src="~/Scripts/modernizr-2.8.3.js"></script>
+    @*Ohjeita: https://modernizr.com/docs*@
+    <script>
+        $(function () {
+            alert("Sivun alustus.")
+            if (Modernizr.canvas) {
+                alert("Selain tukee canvastoimintoja");
+            }
+            else {
+                alert("Selain ei tue Canvas-toimintoja.")
+            }
+        });
 
+        $(function () {
+            alert("Sivun alustus.")
+            if (Modernizr.geolocation) {
+                alert("Selain tukee canvastoimintoja");
+            }
+            else {
+                alert("Selain ei tue Canvas-toimintoja.")
+            }
+        });
+    </script>
+    
+    }
+
+@*//Ks. HomeController*@
+<hi>Käyttämäsi selain</hi>
+<p>@ViewBag.Selain</p>
 
 <script src="~/Scripts/modernizr-2.8.3.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
-<script src="/Scripts/bootstrap.js"></script>
 <script src="/Scripts/respond.js"></script>
 <script src="~/Scripts/jquery-2.2.4.js"></script>
 @*<script src="~/Scripts/jquery-3.2.1.min.js"></script>*@
@@ -19,17 +46,15 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-
-
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-<link href="~/Content/Site.css" rel="stylesheet" />
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+@*<link href="~/Content/Site.css" rel="stylesheet" />*@
 
+
+<link rel="stylesheet" media="mediatype and (min-width: 600px)" href="cadetblue.css" />
 
 <style>
     hr {
@@ -84,9 +109,31 @@
     }
 
     div.sidebarClock {
-        margin-top: 50%;
+        margin-top:10%;
         margin-left: auto;
         margin-right: auto;
+        text-align: center;
+    }
+
+    div.countTime {
+        background: transparent url('../images/timer-area-pattern.png') left top;
+        text-align: center;
+        padding-top: 5em;
+        margin-bottom: 4em;
+        font-size: 3em;
+        margin-top: 10%;
+    }
+
+    .saunaAsetus {
+        text-align: center;
+        padding-top: 1em;
+        margin-bottom: 4em;
+        margin-top: 2%;
+    }
+
+    div.saunaAsetus p {
+        /*color: white;*/
+        font-size:36px;
     }
 </style>
 
@@ -168,40 +215,7 @@
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTiMTzgFGphHJTGCc1p4D9UTipHyDg5MU&callback=myMap"></script>
             @*</div>*@
 
-            @*//Countdown asetukset*@
-            <p id="demo"></p>
-
-            <script>
-                var myVar = setInterval(myTimer, 1000);
-
-                function myTimer() {
-                    var d = new Date();
-                    document.getElementById("demo").innerHTML = d.toLocaleTimeString();
-                }
-            </script>
-
-            <script src="~/Scripts/countdown.js"></script>
-            <div class="timer-area">
-
-                <ul id="countdown">
-                    <li>
-                        <span class="days">00</span>
-                        <p class="timeRefDays">days</p>
-                    </li>
-                    <li>
-                        <span class="hours">00</span>
-                        <p class="timeRefHours">hours</p>
-                    </li>
-                    <li>
-                        <span class="minutes">00</span>
-                        <p class="timeRefMinutes">minutes</p>
-                    </li>
-                    <li>
-                        <span class="seconds">00</span>
-                        <p class="timeRefSeconds">seconds</p>
-                    </li>
-                </ul>
-            </div>
+         
             
             <div class="pallot">
 
@@ -233,6 +247,111 @@
                     </div>
                 </div><!-- /.col-lg-3 -->
 
+            </div>
+
+            @*//Kellon asetukset*@
+
+            <div class="countTime"><p id="demo"></p></div>
+           
+            <script>
+                var myVar = setInterval(myTimer, 1000);
+
+                function myTimer() {
+                    var d = new Date();
+                    document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+                }
+            </script>
+
+
+
+        
+            <div class="saunaAsetus">
+
+                @*//Sauna päälle*@
+
+                <p id="demotimer"></p>
+                <button onclick="timedText()">Sauna päälle</button>
+                <button onclick="clearInterval(myVar)">Stop aika</button>
+                
+                <button onclick="myVar = setTimeout(timedText, 20000)">Time out</button>
+
+                <button onclick="clearTimeout(myVar)">Time off</button>
+
+                <script>
+                    //var Astemerkki = Convert.ToChar(176);
+                          var myVar = setInterval(myTimer, 1000);
+                          function myTimer() {
+                              var d = new Date();
+                              document.getElementById("demotimer").innerHTML = d.toLocaleTimeString();
+                          }
+                @*</script>
+
+                <script>*@
+                    function timedText() {
+                        setTimeout(myTimeout1, 2000)
+                        setTimeout(myTimeout2, 4000)
+                        setTimeout(myTimeout3, 6000)
+                        setTimeout(myTimeout4, 8000)
+                        setTimeout(myTimeout5, 10000)
+                        setTimeout(myTimeout6, 12000)
+                        setTimeout(myTimeout7, 14000)
+                        setTimeout(myTimeout8, 16000)
+                        setTimeout(myTimeout9, 18000)
+                    }
+
+                    function myTimeout1() {
+                        document.getElementById("demotimer").innerHTML = "25";
+                    }
+                    function myTimeout2() {
+                        document.getElementById("demotimer").innerHTML = "30";
+                    }
+                    function myTimeout3() {
+                        document.getElementById("demotimer").innerHTML = "35";
+                    }
+                    function myTimeout4() {
+                        document.getElementById("demotimer").innerHTML = "40";
+                    }
+                    function myTimeout5() {
+                        document.getElementById("demotimer").innerHTML = "45";
+                    }
+                    function myTimeout6() {
+                        document.getElementById("demotimer").innerHTML = "50";
+                    }
+                    function myTimeout7() {
+                        document.getElementById("demotimer").innerHTML = "55";
+                    }
+                    function myTimeout8() {
+                        document.getElementById("demotimer").innerHTML = "60";
+                    }
+                    function myTimeout9() {
+                        document.getElementById("demotimer").innerHTML = "65";
+                    }
+
+                </script>
+            </div>
+
+
+            <script src="~/Scripts/countdown.js"></script>
+            <div class="timer-area">
+
+                <ul id="countdown">
+                    <li>
+                        <span class="days">00</span>
+                        <p class="timeRefDays">days</p>
+                    </li>
+                    <li>
+                        <span class="hours">00</span>
+                        <p class="timeRefHours">hours</p>
+                    </li>
+                    <li>
+                        <span class="minutes">00</span>
+                        <p class="timeRefMinutes">minutes</p>
+                    </li>
+                    <li>
+                        <span class="seconds">00</span>
+                        <p class="timeRefSeconds">seconds</p>
+                    </li>
+                </ul>
             </div>
 
             @*<div class="col-md-12">
@@ -285,7 +404,7 @@
                 var mapProp = {
                     center: myCenter,
                     zoom: 15,
-                    mapTypeId: google.maps.MapTypeId.SATELLITE
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
                 var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
@@ -308,10 +427,6 @@
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
 
-@section Scripts {
 
-    @Scripts.Render("~/bundles/jqueryval")
-
-}
 
 

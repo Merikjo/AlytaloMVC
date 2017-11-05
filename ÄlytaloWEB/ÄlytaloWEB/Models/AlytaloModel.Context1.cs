@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ÄlytaloWEB.Models
+namespace TietokantaAngularMVC.AlytaloMVC.ÄlytaloWEB.ÄlytaloWEB.Models
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class JohaMeriSQL1Entities : DbContext
+    public partial class JohaMeriSQL2Entities : DbContext
     {
-        public JohaMeriSQL1Entities()
-            : base("name=JohaMeriSQL1Entities")
+        public JohaMeriSQL2Entities()
+            : base("name=JohaMeriSQL2Entities")
         {
         }
     
@@ -25,8 +25,9 @@ namespace ÄlytaloWEB.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<TaloIlma> TaloIlma { get; set; }
+        public virtual DbSet<TaloLampo> TaloLampo { get; set; }
         public virtual DbSet<TaloSauna> TaloSauna { get; set; }
         public virtual DbSet<TaloValo> TaloValo { get; set; }
-        public virtual DbSet<TaloLampo> TaloLampo { get; set; }
     }
 }

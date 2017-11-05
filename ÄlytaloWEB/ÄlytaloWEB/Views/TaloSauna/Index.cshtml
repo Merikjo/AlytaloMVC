@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/Site.css" rel="stylesheet" />
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
 
 <div class="w3-container">
     <div class="background">
@@ -111,17 +111,9 @@
                     <th>
                         @Html.DisplayNameFor(model => model.SaunaStop)
                     </th>
-
-                    <th>
-                        <div>Aika</div>
-                    </th>
-
-                    <th>
-                        <div>@DateTime.Now.ToString()</div>
-                    </th>
-                    <th>
-                        <div>Aika</div>
-                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.TotalHours)
+                    </th>*@
 
                     <th></th>
                 </tr>
@@ -150,18 +142,10 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.SaunaStop)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Time)
-                        </td>
-                        @*//2.vaihtoehto*@
-                        <td>
-                            <div>@DateTime.Now.ToString()</div>
-                        </td>
-
-                        @*//3.vaihtoehto*@
-                        <td>
-                            <div><p id="demo"></p></div>
-                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.TotalHours)
+                        </td>*@
+                
 
                         <td>
                             @Html.ActionLink("ON", "SaunaOn", new { id = item.Sauna_ID }) |
